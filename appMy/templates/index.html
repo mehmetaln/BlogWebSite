@@ -84,7 +84,7 @@
             <!-- SİDENAV1 END -->
 
               <!-- CARD START -->
-              <div class="col-8" style=" box-shadow: -1px -2px 0 coral; border-radius: 5px;">
+              <div class="col-8" style=" box-shadow: -2px -2px 0  coral; border-radius: 5px; ">
                 
                 {% for i in blog_list %}
                   
@@ -94,10 +94,10 @@
                       <img
                       src="{{i.image.url}}"
                       alt="Trendy Pants and Shoes"
-                      class="img-fluid rounded-start" style="height: 200px; width: 500px;" 
+                      class="img-fluid rounded-start" style="height: 200px; width: 400px;" 
                       />
                     </a>
-                    <div class="col-md-8 bg-black text-light">
+                    <div class="col-md-8 bg-black text-light" style="display: flex; flex-direction: column; justify-content: space-between;">
                       <div class="card-body ">
                         <h5 class="card-title fw-bold">{{ i.title }}</h5>
                         <p class="card-text">
@@ -105,7 +105,7 @@
                         </p>
                         <div class="d-flex justify-content-between ">
                             <small class="text-muted ">{{ i.date_now }}</small>
-                            <small class="text-danger">{{ i.user }}</small>
+                            <small class="text-info">{{ i.user }}</small>
                           </div>
                       </div>
                     </div>
@@ -115,8 +115,40 @@
                 {% endfor %}
               </div>
               <!-- CARD END -->
+
+
+              <!-- SİDENAV2 START -->
               <div class="col-2">
+                <div>
+                  <p class="fw-bold text-light">En Popüler Yazılar</p>
+                </div>
+                <hr>
+                
+                {% for i in blog_likes  %}
+                <ul class="list-group list-group-light">
+                  <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <div class="d-flex align-items-center">
+                      <img src="{{ i.image.url }}" alt="" style="width: 45px; height: 45px"
+                        class="rounded-circle" />
+                      <div class="ms-3">
+                        <p class="text-light mb-0">{{ i.title }}</p>
+                      </div>
+                    </div>
+                  </li>
+                  <div class="d-flex justify-content-between ">
+                    <small></small>
+                    <small class="fw-bold  mb-1 text-info">{{ i.user }}</small>
+                  </div>  
+                </ul>
+                {% endfor %}
+                  
+
+
               </div>
+              <!-- SİDENAV2 END -->
+
+
+
           </div>
         </div>
       </main>
