@@ -15,7 +15,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.1.0/mdb.min.css"rel="stylesheet"/>
     <title>Blog Web Site</title>
 </head>
-<body class="bg-black h-100">
+<body class="bg-black h-100" style="height: 5000px;">
 <!-- NAVBAR START -->
 <nav class="navbar navbar-expand-lg navbar-light   bg-black">
     <div class="container ">
@@ -51,88 +51,71 @@
 
   <main>
     <!-- CAROUSEL START -->
-    <!-- <div id="carouselExampleIndicators" class="carousel slide" data-mdb-ride="carousel" data-mdb-carousel-init>
-        <div class="carousel-indicators">
-          <button
-            type="button"
-            data-mdb-target="#carouselExampleIndicators"
-            data-mdb-slide-to="0"
-            class="active"
-            aria-current="true"
-            aria-label="Slide 1"
-          ></button>
-          <button
-            type="button"
-            data-mdb-target="#carouselExampleIndicators"
-            data-mdb-slide-to="1"
-            aria-label="Slide 2"
-          ></button>
-          <button
-            type="button"
-            data-mdb-target="#carouselExampleIndicators"
-            data-mdb-slide-to="2"
-            aria-label="Slide 3"
-          ></button>
-        </div>
-        <div class="carousel-inner" style="height: 400px; ">
-          <div class="carousel-item active">
-            <img src="{% static 'img/dark1.jpg' %}" class="d-block w-100" />
-          </div>
-          <div class="carousel-item">
-            <img src="{% static 'img/dark2.jpg' %}" class="d-block w-100" />
-          </div>
-          <div class="carousel-item">
-            <img src="{% static 'img/dark3.jpg' %}" class="d-block w-100" />
-          </div>
-        </div>
-        <button class="carousel-control-prev" type="button" data-mdb-target="#carouselExampleIndicators" data-mdb-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-mdb-target="#carouselExampleIndicators" data-mdb-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
-        </button>
-      </div> -->
+    <div class="d-flex justify-content-center my-1" style="width: 100%;">
+      <img src="{% static 'img/anasayfavideo.gif' %}" alt="">
+    </div>
     <!-- CAROUSEL END -->
 
 
 
-      <div class="container-fluid ">
+      <div class="container-fluid my-5">
           <div class="row">
-              <div class="col-3">
-                
+            <!-- SİDENAV1 START -->
+            <div class="col-2">
+              <div>
+                <p class="fw-bold fs-5" style="color: white;">İlginizi Çekebilecek Yazılır</p>
+                <hr>
               </div>
+              {% for i in blog_random_list  %}
+              <a href="">
+                <ul class="list-group list-group-light mb-3">
+                  <li class="list-group-item">
+                    <h5 class="fw-bold fs-6 text-light">{{ i.title }}</h5>
+                    <div class="d-flex">
+                      <div><img style="width: 250px; height: 77px;" src="{{ i.image.url }}" alt=""></div>
+                    </div>
+                    </li>
+                </ul>
+              </a>
+              {% endfor %}
+   
+                
+            </div>
+            <!-- SİDENAV1 END -->
 
               <!-- CARD START -->
-              <div class="col-6">
-                <div class="card mb-3 my-5" style="max-width: 700px; height: 300px;">
+              <div class="col-8" style=" box-shadow: -1px -2px 0 coral; border-radius: 5px;">
+                
+                {% for i in blog_list %}
+                  
+                <div class="card mb-3 my-5" style="width: auto; height: 200px;"  >
                   <div class="row g-0">
-                    <div class="col-md-4">
+                    <a href="/detail/{{ i.id }}" class="col-md-4">
                       <img
-                      src="https://mdbcdn.b-cdn.net/wp-content/uploads/2020/06/vertical.webp"
+                      src="{{i.image.url}}"
                       alt="Trendy Pants and Shoes"
-                      class="img-fluid rounded-start" style="height: 300px; width: 500px;" 
+                      class="img-fluid rounded-start" style="height: 200px; width: 500px;" 
                       />
-                    </div>
+                    </a>
                     <div class="col-md-8 bg-black text-light">
                       <div class="card-body ">
-                        <h5 class="card-title">Card title</h5>
+                        <h5 class="card-title fw-bold">{{ i.title }}</h5>
                         <p class="card-text">
-                          This is a wider card with supporting text below as a natural lead-in to
-                          additional content. This content i  s a little bit longer.
+                          {{ i.text|truncatechars:250 }}
                         </p>
-                        <p class="card-text text-light">
-                          <small class="text-muted ">Last updated 3 mins ago</small>
-                        </p>
+                        <div class="d-flex justify-content-between ">
+                            <small class="text-muted ">{{ i.date_now }}</small>
+                            <small class="text-danger">{{ i.user }}</small>
+                          </div>
                       </div>
                     </div>
                   </div>
                 </div>
+                <hr>
+                {% endfor %}
               </div>
               <!-- CARD END -->
-              <div class="col-3">
-                
+              <div class="col-2">
               </div>
           </div>
         </div>
