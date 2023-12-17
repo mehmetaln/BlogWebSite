@@ -8,10 +8,8 @@ from django.db.models import Count
 def indexPage(request):
     blog_list = Blog.objects.all()
     blog_random_list = Blog.objects.all().order_by('?')
-    blog_comments = Comment.objects.all()
     blog_likes = Blog.objects.annotate(q_count = Count('likes')).order_by("-q_count")
-    # blog_comments = Blog.objects.all().order_by('-comment_num')
-    
+    blog_comments = Blog.objects.all().order_by('-comment_num')
     context = {
         "blog_list":blog_list,
         "blog_random_list": blog_random_list[:4],

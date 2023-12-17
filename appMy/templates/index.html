@@ -15,7 +15,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.1.0/mdb.min.css"rel="stylesheet"/>
     <title>Blog Web Site</title>
 </head>
-<body class="bg-black h-100" style="height: 5000px;">
+<body class="bg-black h-100 text-light" style="height: 5000px;">
 <!-- NAVBAR START -->
 <nav class="navbar navbar-expand-lg navbar-light   bg-black">
     <div class="container ">
@@ -123,7 +123,7 @@
                   <p class="fw-bold text-light">En Popüler Yazılar</p>
                 </div>
                 <hr>
-                
+
                 {% for i in blog_likes  %}
                 <ul class="list-group list-group-light">
                   <li class="list-group-item d-flex justify-content-between align-items-center">
@@ -137,6 +137,31 @@
                   </li>
                   <div class="d-flex justify-content-between ">
                     <small></small>
+                    <small class="fw-bold  mb-1 text-info">{{ i.user }}</small>
+                  </div>  
+                </ul>
+                {% endfor %}
+                <div>
+                  <p class="fw-bold text-light">En Çok Yorum Alanlar</p>
+                </div>
+                <hr>
+
+                {% for i in blog_comments %}
+                <ul class="list-group list-group-light">
+                  <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <div class="d-flex align-items-center">
+                      <img src="{{ i.image.url }}" alt="" style="width: 45px; height: 45px"
+                        class="rounded-circle" />
+                      <div class="ms-3">
+                        <p class="text-light mb-0">{{ i.title }}</p>
+                      </div>
+                    </div>
+                  </li>
+                  <div class="d-flex justify-content-between ">
+                    <div class="d-flex justify-content-between">
+
+                      <small><i class="fa-regular fa-comment"></i>{{ i.comment_num }}</small>
+                    </div>
                     <small class="fw-bold  mb-1 text-info">{{ i.user }}</small>
                   </div>  
                 </ul>
@@ -165,7 +190,7 @@
 
 
 <!-- MDB JS -->
-<script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+<!-- <script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
 <script>
   const options = {
      // default: '32px'
@@ -173,18 +198,18 @@
     right: '32px', // default: '32px'
     left: 'unset', // default: 'unset'
     time: '0.5s', // default: '0.3s'
-    mixColor: '#fff', // default: '#fff'
+     mixColor: '#fff', // default: '#fff'
     backgroundColor: '#fff',  // default: '#fff'
     buttonColorDark: '#100f2c',  // default: '#100f2c'
-    buttonColorLight: '#fff', // default: '#fff'
-    saveInCookies: false, // default: true,
+    buttonColorLight: '#fff', // default: '#fff' -->
+    <!-- saveInCookies: true, // default: true,
     label: '🌓', // default: ''
-    autoMatchOsTheme: true // default: true
+    autoMatchOsTheme: true // defau true
   }
   
   const darkmode = new Darkmode(options);
   darkmode.showWidget();
-</script>
+</script> --> 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/mdb-ui-kit@3.11.0/js/mdb.min.js"></script>
 <script type="text/javascript"src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.1.0/mdb.umd.min.js"></script>

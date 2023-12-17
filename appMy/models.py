@@ -9,7 +9,7 @@ class Blog(models.Model):
     image = models.ImageField(("Resim"), upload_to="blog",)
     date_now = models.DateTimeField(("Tarih - Saat"), auto_now_add=True)
     likes = models.ManyToManyField(User, related_name="user2", verbose_name=("Begenen Kullanıcılar"),blank=True)
-    commnet_num = models.IntegerField(("Yorum Sayisi"), default=0)
+    comment_num = models.IntegerField(("Yorum Sayisi"), default=0)
     
     def __str__(self):
         return self.title
