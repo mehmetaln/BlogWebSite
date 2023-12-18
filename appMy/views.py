@@ -46,8 +46,27 @@ def detailPage(request,bid):
     
     return render(request, "detail.html", context)
 
-
 def contactPage(request):
-    context = {}
     
-    return render(request, "contact.html", context)
+    if request.method == "POST":
+        fullname = request.POST.get("fullname")
+        email = request.POST.get("email")
+        subject = request.POST.get("subject")
+        text= request.POST.get("text")
+
+        contact = Contact(fullname = fullname, email = email, title = subject, text = text)
+        contact.save()
+        
+        
+    context = {
+        
+    }
+    return render(request,"contact.html",context)
+
+
+def allblogPage(request):
+    blog_list = Blog.objects.all()
+    context = {
+        "blog_list":blog_list,  
+    }
+    return render(request, "allblogs.html",context)

@@ -24,3 +24,13 @@ class Comment(models.Model):
     
     def __str__(self):
         return self.blog.title
+    
+    
+class Contact(models.Model):
+    title = models.CharField(("Konu"), max_length=50)
+    text= models.CharField(("Mesaj"), max_length=50)
+    email = models.CharField(("Email"), max_length=50)
+    fullname = models.CharField(("Ad-Soyad"), max_length=50)
+    
+    def __str__(self):
+        return self.title
