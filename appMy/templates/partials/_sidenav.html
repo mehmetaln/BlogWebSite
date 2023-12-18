@@ -1,0 +1,51 @@
+              <!-- SİDENAV2 START -->
+              <div class="col-2">
+                <div>
+                  <p class="fw-bold text-light">En Popüler Yazılar</p>
+                </div>
+                <hr>
+
+                {% for i in blog_likes  %}
+                <ul class="list-group list-group-light">
+                  <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <div class="d-flex align-items-center">
+                      <img src="{{ i.image.url }}" alt="" style="width: 45px; height: 45px"
+                        class="rounded-circle" />
+                      <div class="ms-3">
+                        <p class="text-light mb-0">{{ i.title }}</p>
+                      </div>
+                    </div>
+                  </li>
+                  <div class="d-flex justify-content-between ">
+                    <small></small>
+                    <small class="fw-bold  mb-1 text-info">{{ i.user }}</small>
+                  </div>  
+                </ul>
+                {% endfor %}
+                <div>
+                  <p class="fw-bold text-light">En Çok Yorum Alanlar</p>
+                </div>
+                <hr>
+
+                {% for i in blog_comments %}
+                <ul class="list-group list-group-light">
+                  <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <div class="d-flex align-items-center">
+                      <img src="{{ i.image.url }}" alt="" style="width: 45px; height: 45px"
+                        class="rounded-circle" />
+                      <div class="ms-3">
+                        <p class="text-light mb-0">{{ i.title }}</p>
+                      </div>
+                    </div>
+                  </li>
+                  <div class="d-flex justify-content-between ">
+                    <div class="d-flex justify-content-between">
+
+                      <small><i class="fa-regular fa-comment"></i>{{ i.comment_num }}</small>
+                    </div>
+                    <small class="fw-bold  mb-1 text-info">{{ i.user }}</small>
+                  </div>  
+                </ul>
+                {% endfor %}
+              </div>
+              <!-- SİDENAV2 END -->

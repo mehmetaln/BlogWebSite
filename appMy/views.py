@@ -38,7 +38,10 @@ def detailPage(request,bid):
     
     context = {
         "blog":blog,
-        "comment_list":comment_list
+        "comment_list":comment_list,
+        "blog_random_list" : Blog.objects.all().order_by('?'),
+        "blog_likes" : Blog.objects.annotate(q_count = Count('likes')).order_by("-q_count"),
+        "blog_comments" : Blog.objects.all().order_by('-comment_num'),
     }
     
     return render(request, "detail.html", context)

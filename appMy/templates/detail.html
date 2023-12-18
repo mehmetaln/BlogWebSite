@@ -1,62 +1,12 @@
-<!DOCTYPE html>
+{% extends 'base.html' %}
 {% load static %}
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DETAY</title>
-        <!-- Font Awesome -->
-    <link
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-    rel="stylesheet"
-    />
-    <!-- Google Fonts -->
-    <link
-    href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
-    rel="stylesheet"
-    />
-    <!-- MDB -->
-    <link
-    href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.1.0/mdb.min.css"
-    rel="stylesheet"
-    />
-</head>
-<body class="bg-black h-100" style="height: 5000px;">
-    <!-- NAVBAR START -->
-<nav class="navbar navbar-expand-lg navbar-light   bg-black">
-    <div class="container ">
-      <button
-        data-mdb-collapse-init
-        class="navbar-toggler"
-        type="button"
-        data-mdb-target="#navbarTogglerDemo01"
-        aria-controls="navbarTogglerDemo01"
-        aria-expanded="false"
-        aria-label="Toggle navigation">
-        <i class="fas fa-bars"></i>
-      </button>
-      <div class="collapse blogtext navbar-collapse  fw-bold fs-5 text-light" id="navbarTogglerDemo01">
-        <a class="navbar-brand fs-2 text-light " href="#">BLOG</a>
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link active fw-bolder text-light" aria-current="page" href="#">Ana Sayfa</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active fw-bolder text-light" aria-current="page" href="#">İletişim</a>
-          </li>
-        </ul>
-        <form class="d-flex input-group w-auto ">
-          <input type="search"class="form-control rounded-start-3 form-outline" placeholder="Type query"aria-label="Search"/>
-          <button data-mdb-ripple-initclass="btn btn-outline-dark  "type="button" name="search" class="btn btn-outline-dark rounded-end-3 " data-mdb-ripple-color="light">Search</button>
-        </form>
-      </div>
-    </div>
-  </nav>
-<!-- NAVBAR END  -->
+
+{% block body %}
+
 <main>
   <div class="container">
-    <div class="row">
-      <div class="col-12 " >
+    <div class="row d-flex justify-content-between">
+      <div class="col-8 " >
         <div class="card mb-3 my-4" style="width: 100%;">
           <div class="row g-0 " style="height: auto">
               <div class="col-md-4 " style="height: auto; background: #000;"  >
@@ -74,96 +24,72 @@
               </div>
           </div>
         </div>
-      </div>
-    </div>
-    <hr class="fw-bold ">
-    <!-- COMMENT START -->
-    <section>
-      <div class="comments-list">
-         <div class="section-heading text-light">
-            
-            {% if comment_list %}
-               <div class="fs-4 fw-bold my-3">Yorumlar</div>
-            {% else %}
-               <div class="fs-4 fw-bold my-3">Yorum Bulunmuyor</div>
-            {% endif %}
-               
-         </div>
-         
-         {% for i in comment_list %}
-            <div class="row">
-               <div class="col-sm-2 col-12">
-                  <img src="http://mdbootstrap.com/img/Photos/Avatars/avatar-8.jpg">
-               </div>
-               <div class="col-sm-10 col-12">
-                  <div class="d-flex justify-content-between">
-                     <div class="fs-4 fw-bold">{{ i.user }}</div>
-                     <div><i class="fa fa-clock-o"></i> {{ i.date_now }}</div>
-                  </div>
-                  <div class="card-data">
-                     <ul class="list-unstyled">
-                        <li class="comment-date"></li>
-                     </ul>
-                  </div>
-                  <p class="comment-text">{{ i.text }}</p>
-                  </div>
-                  <hr>
+        <!-- COMMENT START -->
+        <section>
+          <div class="comments-list">
+            <div class="section-heading text-light">
+              
+              {% if comment_list %}
+              <div class="fs-4 fw-bold my-3">Yorumlar</div>
+              {% else %}
+              <div class="fs-4 fw-bold my-3">Yorum Bulunmuyor</div>
+                {% endif %}
+                  
             </div>
-         {% endfor %}
             
-      </div>
-   </section>
-   <hr class="between-sections">
-   <section>
-      <div class="reply-form">
-         <div class="fs-4 fw-bold my-3 text-light">Yorum Yap</div>
-         <div class="row">
+            {% for i in comment_list %}
+            <div class="row">
+              <div class="col-sm-2 col-12">
+                <img src="http://mdbootstrap.com/img/Photos/Avatars/avatar-8.jpg">
+              </div>
+              <div class="col-sm-10 col-12">
+                <div class="d-flex justify-content-between">
+                  <div class="fs-4 fw-bold">{{ i.user }}</div>
+                  <div><i class="fa fa-clock-o"></i> {{ i.date_now }}</div>
+                </div>
+                <div class="card-data">
+                  <ul class="list-unstyled">
+                    <li class="comment-date"></li>
+                  </ul>
+                      </div>
+                      <p class="comment-text">{{ i.text }}</p>
+                    </div>
+                    <hr>
+                    
+                  </div>
+                  {% endfor %}
+                  
+                </div>
+              </section>
+      <hr class="between-sections">
+      <section>
+        <div class="reply-form">
+          <div class="fs-4 fw-bold my-3 text-light">Yorum Yap</div>
+          <div class="row">
             <div class="col-sm-2 col-12 rounded-5">
-               <img src="http://mdbootstrap.com/img/Photos/Avatars/avatar-6.jpg ">
+              <img src="http://mdbootstrap.com/img/Photos/Avatars/avatar-6.jpg ">
             </div>
             <!--Content column-->
             <div class="col-sm-10 col-12">
-               <form method="POST">
-                  {% csrf_token %}
-                  <textarea name="text" cols="30" rows="6" class="form-control" placeholder="Yorum Yazınız"></textarea>
-                  <div class="text-end my-3">
-                     <button class="btn btn-primary" type="submit">Paylaş</button>
-                  </div>
-               </form>
+              <form method="POST">
+                {% csrf_token %}
+                <textarea name="text" cols="30" rows="6" class="form-control" placeholder="Yorum Yazınız"></textarea>
+                <div class="text-end my-3">
+                  <button class="btn btn-primary" type="submit">Paylaş</button>
+                </div>
+              </form>
             </div>
             <!--/.Content column-->
-
-         </div>
-         <!--/.Third row-->
-      </div>
-   </section>
-
-    <!-- COMMENT END -->
-    
-    
-    
-    
-    
+          </div>
+          <!--/.Third row-->
+        </div>
+      </section>
+      <!-- COMMENT END -->
+    </div>
+      {% include 'partials/_sidenav.html' %} 
   </div>
   </main>
+
+{% endblock body %}
+  
   <!-- MDB JS -->
-  
-
-  
-  
-  
-
-
-
-
-
-
-
-
-
-<script
-  type="text/javascript"
-  src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.1.0/mdb.umd.min.js"
-></script>
-</body>
-</html>
