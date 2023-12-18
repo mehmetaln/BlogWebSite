@@ -45,3 +45,9 @@ def detailPage(request,bid):
     }
     
     return render(request, "detail.html", context)
+
+
+def contactPage(request):
+    context = {}
+    
+    return render(request, "contact.html", context)
