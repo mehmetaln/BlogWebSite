@@ -88,3 +88,8 @@ def allblogPage(request, cslug=None):
         "category_list":category_list,
     }
     return render(request, "allblogs.html",context)
+
+
+def loginPage(request):
+    context = {}
+    return render(request, "login.html",context)

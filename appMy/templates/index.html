@@ -14,7 +14,7 @@
       <div class="container-fluid my-5">
           <div class="row">
             <!-- SİDENAV1 START -->
-<div class="col-2">
+ <div class="col-2">
   <div>
     <p class="fw-bold fs-6" style="color: white;">İlginizi Çekebilecek Yazılır</p>
     <hr>
@@ -38,9 +38,7 @@
 
               <!-- CARD START -->
               <div class="col-8" style=" box-shadow: -2px -2px 0  coral; border-radius: 5px; ">
-                
-                {% for i in blog_list %}
-                  
+                {% for i in blog_list %}   
                 <div class="card mb-3 my-5" style="width: auto; height: 200px;"  >
                   <div class="row g-0">
                     <a href="{% url 'detailPage' i.id %}" class="col-md-4">
