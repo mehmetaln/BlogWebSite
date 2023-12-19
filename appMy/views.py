@@ -1,6 +1,10 @@
 from django.shortcuts import render
 from appMy.models import *
 from django.db.models import Count
+from django.db.models import Q
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.models import User
+from django.contrib import messages # kullanıc
 
 # Create your views here.
 
@@ -64,9 +68,23 @@ def contactPage(request):
     return render(request,"contact.html",context)
 
 
-def allblogPage(request):
-    blog_list = Blog.objects.all()
+def allblogPage(request, cslug=None):
+    
+    if cslug:
+        blog_list= Blog.objects.filter(category__slug = cslug).order_by('-id')
+    else:    
+        blog_list = Blog.objects.all().order_by('-id')
+        
+    query=request.GET.get("query")
+    
+    if query:
+        blog_list = blog_list.filter(Q(title__icontains=query) | Q(text__icontains=query))
+    # else:
+    #    messages.error(request, "Kullanıcı adı veya şifre yanlış!!")
+    
+    category_list = Category.objects.all()
     context = {
         "blog_list":blog_list,  
+        "category_list":category_list,
     }
     return render(request, "allblogs.html",context)

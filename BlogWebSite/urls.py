@@ -24,8 +24,9 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path ('', indexPage),
-    path('detail/<bid>', detailPage),
-    path('iletisim/', contactPage),
-    path('all/',allblogPage),
+    path ('', indexPage,name="indexPage"),
+    path('detail/<bid>', detailPage,name="detailPage"),
+    path('iletisim/', contactPage, name="contactPage"),
+    path('all/',allblogPage, name="allblogPage"),
+    path('all/<cslug>',allblogPage, name="allblogPage2"),
 ] + static (settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
