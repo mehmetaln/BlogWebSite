@@ -92,4 +92,4 @@ def allblogPage(request, cslug=None):
 
 def loginPage(request):
     context = {}
-    return render(request, "login.html",context)
+    return render(request, "user/login.html",context)
