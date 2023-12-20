@@ -17,7 +17,10 @@
 </head>
 <body class="bg-black h-100 text-light container-fluid" style="height: 5000px;">
 {% include 'partials/_navbar.html' %}
-    
+
+{% for i in messages %}
+  <div class="text-center p-3 text-white bg-danger">{{ i }}</div>
+{% endfor %}
 
 {% block body %}
     
@@ -39,7 +42,6 @@
     label: '🌓', // default: ''
     autoMatchOsTheme: true // defau true
   }
-  
   const darkmode = new Darkmode(options);
   darkmode.showWidget();
 </script> --> 

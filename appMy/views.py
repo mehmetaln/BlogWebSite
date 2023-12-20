@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import *
 from appMy.models import *
 from django.db.models import Count
 from django.db.models import Q
@@ -16,7 +16,7 @@ def indexPage(request):
     blog_comments = Blog.objects.all().order_by('-comment_num')
     context = {
         "blog_list":blog_list,
-        "blog_random_list": blog_random_list[:4],
+        "blog_random_list": blog_random_list,
         "blog_comments": blog_comments[:4],
         "blog_likes":blog_likes[:5]
         
@@ -91,5 +91,20 @@ def allblogPage(request, cslug=None):
 
 
 def loginPage(request):
-    context = {}
-    return render(request, "user/login.html",context)
+
+   if request.method == "POST":
+      username = request.POST.get("username")
+      password = request.POST.get("password")
+
+      user = authenticate(username=username, password=password) 
+      # kontrol eder doğruysa kullanıcı adını yanlışsa None döndürür
+      if user:
+         login(request, user)
+         
+         return redirect("indexPage")
+      else:
+         messages.error(request, "Kullanıcı adı veya şifre yanlış!!")
+         # [] messages listedir for ile döndürülmeli
+   
+   context = {}
+   return render(request, 'user/login.html', context)
