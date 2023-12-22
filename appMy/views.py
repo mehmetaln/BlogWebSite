@@ -85,10 +85,9 @@ def allblogPage(request, cslug=None):
     category_list = Category.objects.all()
     context = {
         "blog_list":blog_list,  
-        "category_list":category_list,
+        "category_list":category_list
     }
     return render(request, "allblogs.html",context)
-
 
 def loginPage(request):
 
@@ -110,12 +109,9 @@ def loginPage(request):
    return render(request, 'user/login.html', context)
 
 
-
-def logoutPage(request):
-    
-    return redirect("loginPage")
-
-
+def registerPage(request):
+    context={}
+    return render(request,"registerPage", context)
 
 def logoutUser(request):
    logout(request)

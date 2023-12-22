@@ -31,6 +31,8 @@ urlpatterns = [
     path('all/<cslug>',allblogPage, name="allblogPage2"),
     # User
     path('login/',loginPage, name="loginPage"),
-    path('logout/user/',logoutPage, name="logoutPage"),
+    path('logout/user/',logoutUser, name="logoutUser"),
+    path('register/',registerPage, name="registerPage"),
+    
     
 ] + static (settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

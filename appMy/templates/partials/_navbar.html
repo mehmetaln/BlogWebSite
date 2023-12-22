@@ -27,21 +27,21 @@
         </ul>
       </div>
       <div class="gap-4">
+        <div class="d-flex justify-content-between gap-3 align-items-center">
         {% if request.user.is_authenticated %}
-          <div class="d-flex justify-content-between gap-3 align-items-center">
             <div class="text-warning">{{request.user}}</div>
             <a href="/logout/user" type="button" class="btn btn-warning me-3">
               Çıkış
            </a>
+           {% else %}
+           <a href="{% url 'loginPage' %}" type="button" class="btn btn-link px-3 me-2">
+             Giriş
+            </a>
+            <a href="{% url 'registerPage' %}" type="button" class="btn btn-primary me-3">
+              Kaydol
+            </a>
+            {% endif %}
           </div>
-        {% else %}
-        <a href="{% url 'loginPage' %}" type="button" class="btn btn-link px-3 me-2">
-          Giriş
-       </a>
-       <a href="{% url 'registerPage' %}" type="button" class="btn btn-primary me-3">
-          Kaydol
-       </a>
-        {% endif %}
       </div>
     </div>
   </nav>
