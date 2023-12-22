@@ -29,6 +29,7 @@ urlpatterns = [
     path('iletisim/', contactPage, name="contactPage"),
     path('all/',allblogPage, name="allblogPage"),
     path('all/<cslug>',allblogPage, name="allblogPage2"),
+    
     # User
     path('login/',loginPage, name="loginPage"),
     path('logout/user/',logoutUser, name="logoutUser"),

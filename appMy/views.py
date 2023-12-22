@@ -22,9 +22,6 @@ def indexPage(request):
         
     }
     return render(request, "index.html", context)
-
-
-
 def detailPage(request,bid):
     blog= Blog.objects.get(id=bid)
     comment_list = Comment.objects.filter(blog=blog)
@@ -49,7 +46,6 @@ def detailPage(request,bid):
     }
     
     return render(request, "detail.html", context)
-
 def contactPage(request):
     
     if request.method == "POST":
@@ -66,8 +62,6 @@ def contactPage(request):
         
     }
     return render(request,"contact.html",context)
-
-
 def allblogPage(request, cslug=None):
     
     if cslug:
@@ -88,7 +82,6 @@ def allblogPage(request, cslug=None):
         "category_list":category_list
     }
     return render(request, "allblogs.html",context)
-
 def loginPage(request):
 
    if request.method == "POST":
@@ -107,12 +100,50 @@ def loginPage(request):
    
    context = {}
    return render(request, 'user/login.html', context)
-
-
-def registerPage(request):
-    context={}
-    return render(request,"registerPage", context)
-
 def logoutUser(request):
    logout(request)
    return redirect("loginPage")
+def registerPage(request):
+    if request.method =="POST":
+        fname = request.POST.get("fname")
+        lname = request.POST.get("lname")
+        email = request.POST.get("email")
+        username = request.POST.get("username")
+        password1 = request.POST.get("password1")
+        password2 = request.POST.get("password2")
+        
+        boolup = boolnum = False
+        boolchar =True
+        
+        if fname and lname and email and password1 and password2:
+            #KONTROL İŞLEMLERİ
+            if password1 == password2:
+                nonchar = "*;:@?.,ı"
+                for i in password1:
+                    if i.isupper():
+                        boolup = True
+                    if i.isnumeric():
+                        boolnum = True
+                    if i in nonchar:
+                        boolchar = False        
+                if  boolup and boolnum and boolchar and len(password1)>6:
+                    if not  User.objects.filter(username = username).exists():
+                        if not User.objects.filter(email = email).exists():
+                            # KAYIT İŞLEMLERİ
+                            user = User.objects.create_user(first_name = fname, last_name = lname, email=email, username=username, password=password1)
+                            user.save()
+                            messages.success(request,"Kaydınız başarıyla tamamlandı")
+                        else:
+                            messages.error("Bu email başka bir kullanıcı tarafından kullanılıyor")
+                    else:
+                        messages.error("Bu kullanıcı adı başka bir kullanıcı tarafından kullanılıyor")
+                else:
+                    messages.error("Şifreniz Büyük harf, rakam içermeli ve 6 haneden büyük olmalı")
+                    messages.error(f"{{nonchar}} bu karekterileri kullanmayınız parolanızda")
+                    
+            else:
+                messages.error("Girdiğiniz şifreler eşleşmiyor")
+        else:
+            messages.error("Formda boş bırakılan yerler var! Lütfen doldurunuz")
+    context={}
+    return render(request,"user/register.html", context)
